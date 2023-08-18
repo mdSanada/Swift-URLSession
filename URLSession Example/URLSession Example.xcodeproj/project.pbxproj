@@ -19,6 +19,7 @@
 		CE74174F2A8FE96B00486CF9 /* PokemonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74174E2A8FE96B00486CF9 /* PokemonRepository.swift */; };
 		CE7417532A8FEC2000486CF9 /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417522A8FEC2000486CF9 /* PokemonModel.swift */; };
 		CE7417552A8FFEDD00486CF9 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417542A8FFEDD00486CF9 /* Formatter.swift */; };
+		CE7417572A9004CE00486CF9 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417562A9004CE00486CF9 /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,7 @@
 		CE74174E2A8FE96B00486CF9 /* PokemonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRepository.swift; sourceTree = "<group>"; };
 		CE7417522A8FEC2000486CF9 /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		CE7417542A8FFEDD00486CF9 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		CE7417562A9004CE00486CF9 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				CE7417172A8FD2E000486CF9 /* SceneDelegate.swift */,
 				CE7417192A8FD2E000486CF9 /* ViewController.swift */,
 				CE7417542A8FFEDD00486CF9 /* Formatter.swift */,
+				CE7417562A9004CE00486CF9 /* Alert.swift */,
 				CE7417502A8FEC1200486CF9 /* Models */,
 				CE74174A2A8FE95400486CF9 /* Service */,
 				CE74171B2A8FD2E000486CF9 /* Main.storyboard */,
@@ -208,6 +211,7 @@
 				CE7417552A8FFEDD00486CF9 /* Formatter.swift in Sources */,
 				CE74174D2A8FE96200486CF9 /* PokemonService.swift in Sources */,
 				CE7417162A8FD2E000486CF9 /* AppDelegate.swift in Sources */,
+				CE7417572A9004CE00486CF9 /* Alert.swift in Sources */,
 				CE7417182A8FD2E000486CF9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

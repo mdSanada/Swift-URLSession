@@ -90,13 +90,6 @@ extension Requestable {
                task.encoding == .body {
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             }
-            
-//            if headers["Authorization"] == nil,
-//                headers["refresh_token"] == nil {
-//                let token = KeychainStore.getToken()
-//                Helper.print("Request: Setting Token")
-//                request.addValue(token, forHTTPHeaderField: "Authorization")
-//            }
         }
     }
     
