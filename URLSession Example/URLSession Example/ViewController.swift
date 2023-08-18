@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         labelPokemonName.text = ""
         imagePokemon.image = nil
         loading(false)
+        handleBackgroundTap()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,6 +38,16 @@ class ViewController: UIViewController {
         imagePokeball.layer.removeAllAnimations()
     }
     
+    private func handleBackgroundTap() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        fieldSearchPokemon.resignFirstResponder()
+    }
+
     private func setImage(image: UIImage?) {
         DispatchQueue.main.async { [weak self] in
             self?.imagePokemon.image = image
@@ -69,7 +80,6 @@ class ViewController: UIViewController {
         requestPokemon(by: text)
     }
 }
-
 
 // Usage example of URL Session Framework
 extension ViewController {

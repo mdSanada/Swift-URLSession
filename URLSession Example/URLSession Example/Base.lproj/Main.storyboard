@@ -24,7 +24,7 @@
                                         <color key="backgroundColor" name="Black"/>
                                         <color key="textColor" name="White"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7c-4w-dVD">
                                         <rect key="frame" x="255.33333333333329" y="0.0" width="97.666666666666657" height="34.333333333333336"/>
