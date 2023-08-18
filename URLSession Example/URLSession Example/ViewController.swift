@@ -79,6 +79,14 @@ class ViewController: UIViewController {
         guard let text = fieldSearchPokemon.text, !text.isEmpty else { return }
         requestPokemon(by: text)
     }
+    
+    private func onError(message: String) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = Alert.createSimpleAlert(title: "An Issue Occurred!",
+                                                message: message)
+            self?.present(alert, animated: true)
+        }
+    }
 }
 
 // Usage example of URL Session Framework
@@ -91,8 +99,9 @@ extension ViewController {
             Helper.print(pokemon)
             self?.getPokemonImage(from: pokemon.id)
             self?.configure(pokemon: pokemon)
-        } onError: { error in
+        } onError: { [weak self] error in
             Helper.print(error)
+            self?.onError(message: "We're sorry, but we couldn't locate the specified Pokémon. Please double-check the name or try again later.")
         }
     }
     
@@ -104,6 +113,7 @@ extension ViewController {
             self?.setImage(image: pokemon)
         } onError: { [weak self] in
             self?.setImage(image: nil)
+            self?.onError(message: "We apologize, but we're unable to render the image at the moment. This could be due to a technical issue. ")
             Helper.print("Somethings Wrong happen")
         }
     }
