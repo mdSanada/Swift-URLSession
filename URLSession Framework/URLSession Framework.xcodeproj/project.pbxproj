@@ -12,6 +12,13 @@
 		CE7416FF2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7416FE2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift */; };
 		CE7417002A8FD2C800486CF9 /* URLSession_Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE7416F22A8FD2C800486CF9 /* URLSession_Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE7417382A8FD35100486CF9 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417372A8FD35100486CF9 /* Helper.swift */; };
+		CE74173D2A8FE64700486CF9 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74173C2A8FE64700486CF9 /* NetworkManager.swift */; };
+		CE74173F2A8FE65400486CF9 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74173E2A8FE65400486CF9 /* Requestable.swift */; };
+		CE7417412A8FE65F00486CF9 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417402A8FE65F00486CF9 /* NetworkMethod.swift */; };
+		CE7417432A8FE66900486CF9 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417422A8FE66900486CF9 /* NetworkTask.swift */; };
+		CE7417452A8FE67400486CF9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417442A8FE67400486CF9 /* ImageDownloader.swift */; };
+		CE7417472A8FE78300486CF9 /* Extension + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417462A8FE78300486CF9 /* Extension + Data.swift */; };
+		CE7417492A8FE86200486CF9 /* Extension + Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417482A8FE86200486CF9 /* Extension + Dictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +38,13 @@
 		CE7416F92A8FD2C800486CF9 /* URLSession FrameworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "URLSession FrameworkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7416FE2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession_FrameworkTests.swift; sourceTree = "<group>"; };
 		CE7417372A8FD35100486CF9 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CE74173C2A8FE64700486CF9 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		CE74173E2A8FE65400486CF9 /* Requestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
+		CE7417402A8FE65F00486CF9 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
+		CE7417422A8FE66900486CF9 /* NetworkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		CE7417442A8FE67400486CF9 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		CE7417462A8FE78300486CF9 /* Extension + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Data.swift"; sourceTree = "<group>"; };
+		CE7417482A8FE86200486CF9 /* Extension + Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Dictionary.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				CE7416F22A8FD2C800486CF9 /* URLSession_Framework.h */,
-				CE7417372A8FD35100486CF9 /* Helper.swift */,
+				CE74173B2A8FE63700486CF9 /* Global */,
+				CE74173A2A8FE62F00486CF9 /* Network */,
 				CE7416F32A8FD2C800486CF9 /* URLSession_Framework.docc */,
 			);
 			path = "URLSession Framework";
@@ -86,6 +101,28 @@
 				CE7416FE2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift */,
 			);
 			path = "URLSession FrameworkTests";
+			sourceTree = "<group>";
+		};
+		CE74173A2A8FE62F00486CF9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE74173C2A8FE64700486CF9 /* NetworkManager.swift */,
+				CE74173E2A8FE65400486CF9 /* Requestable.swift */,
+				CE7417402A8FE65F00486CF9 /* NetworkMethod.swift */,
+				CE7417422A8FE66900486CF9 /* NetworkTask.swift */,
+				CE7417442A8FE67400486CF9 /* ImageDownloader.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CE74173B2A8FE63700486CF9 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				CE7417372A8FD35100486CF9 /* Helper.swift */,
+				CE7417462A8FE78300486CF9 /* Extension + Data.swift */,
+				CE7417482A8FE86200486CF9 /* Extension + Dictionary.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +234,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE74173D2A8FE64700486CF9 /* NetworkManager.swift in Sources */,
+				CE7417492A8FE86200486CF9 /* Extension + Dictionary.swift in Sources */,
+				CE7417432A8FE66900486CF9 /* NetworkTask.swift in Sources */,
+				CE7417452A8FE67400486CF9 /* ImageDownloader.swift in Sources */,
+				CE7417472A8FE78300486CF9 /* Extension + Data.swift in Sources */,
+				CE74173F2A8FE65400486CF9 /* Requestable.swift in Sources */,
 				CE7416F42A8FD2C800486CF9 /* URLSession_Framework.docc in Sources */,
 				CE7417382A8FD35100486CF9 /* Helper.swift in Sources */,
+				CE7417412A8FE65F00486CF9 /* NetworkMethod.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
