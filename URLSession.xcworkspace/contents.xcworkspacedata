@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:URLSession Example/URLSession Example.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:URLSession Framework/URLSession Framework.xcodeproj">
+   </FileRef>
+</Workspace>
