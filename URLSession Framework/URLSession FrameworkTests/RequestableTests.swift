@@ -9,102 +9,28 @@ import XCTest
 @testable import URLSession_Framework
 
 final class RequestableTests: XCTestCase {
-    // Mock NetworkTask for testing
-    enum MockNetworkTask: NetworkTask {
-        case get
-        case getQuey(String)
-        case post(String)
-        case authPost(String)
-        case put(String)
-        case patch(String)
-        case delete(String)
+    class MockNetworkTask: NetworkTask {
+        var baseURL: URLSession_Framework.NetworkBaseURL
+        var path: String
+        var method: URLSession_Framework.NetworkMethod
+        var params: [String : Any]
+        var encoding: URLSession_Framework.EncodingMethod
+        var headers: [String : String]?
         
-        var baseURL: NetworkBaseURL {
-            return .url(URL(string: "https://mock.sanada.com")!)
-        }
-        
-        var path: String {
-            switch self {
-            case .get:
-                return ""
-            case .getQuey:
-                return "mocked"
-            case .post:
-                return "mockedPost"
-            case .authPost:
-                return "mockedAuthPost"
-            case .put:
-                return "mockedPut"
-            case .patch:
-                return "mockedPatch"
-            case .delete:
-                return "mockedDelete"
-            }
-        }
-        
-        var method: NetworkMethod {
-            switch self {
-            case .getQuey, .get:
-                return .get
-            case .post, .authPost:
-                return .post
-            case .put:
-                return .put
-            case .patch:
-                return .patch
-            case .delete:
-                return .delete
-            }
-        }
-        
-        var params: [String: Any] {
-            switch self {
-            case .get:
-                return [:]
-            case .getQuey(let param):
-                return ["key": param]
-            case .post(let param):
-                return ["key": param]
-            case .authPost(let param):
-                return ["key": param]
-            case .put(let param):
-                return ["key": param]
-            case .patch(let param):
-                return ["key": param]
-            case .delete(let param):
-                return ["key": param]
-            }
-        }
-        
-        var encoding: EncodingMethod {
-            switch self {
-            case .getQuey, .get:
-                return .queryString
-            case .post, .authPost, .put, .patch, .delete:
-                return .body
-            }
-        }
-        
-        var headers: [String: String]? {
-            switch self {
-            case .get:
-                return nil
-            case .getQuey(let header):
-                return ["header": header]
-            case .post(let header):
-                return ["header": header]
-            case .put(let header):
-                return ["header": header]
-            case .patch(let header):
-                return ["header": header]
-            case .delete(let header):
-                return ["header": header]
-            case .authPost(let header):
-                return ["header": header]
-            }
+        internal init(baseURL: NetworkBaseURL,
+                      path: String,
+                      method: NetworkMethod,
+                      params: [String : Any],
+                      encoding: EncodingMethod,
+                      headers: [String : String]? = nil) {
+            self.baseURL = baseURL
+            self.path = path
+            self.method = method
+            self.params = params
+            self.encoding = encoding
+            self.headers = headers
         }
     }
-    
     // Mock URLSession for testing
     class MockURLSession: URLSession {
         var dataTaskCalled = false
@@ -120,8 +46,13 @@ final class RequestableTests: XCTestCase {
         
     }
     
+    // Test Http Method
     func testCreateGetQueryRequest() {
-        let mockTask = MockNetworkTask.getQuey("request")
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .get,
+                                       params: [:],
+                                       encoding: .queryString)
         let requestable = MockRequestable()
         let request = requestable.createRequest(task: mockTask)
         
@@ -130,7 +61,11 @@ final class RequestableTests: XCTestCase {
     }
     
     func testCreateGetRequest() {
-        let mockTask = MockNetworkTask.get
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "",
+                                       method: .get,
+                                       params: [:],
+                                       encoding: .queryString)
         let requestable = MockRequestable()
         let request = requestable.createRequest(task: mockTask)
         
@@ -141,53 +76,98 @@ final class RequestableTests: XCTestCase {
 
     func testSetPostHTTPMethod() {
         var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
-        let mockTask = MockNetworkTask.post("request")
-        
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .post,
+                                       params: [:],
+                                       encoding: .body)
+
         let requestable = MockRequestable()
         requestable.setHTTPMethod(to: &request, task: mockTask)
         
+        XCTAssertEqual(request.url?.absoluteString, "https://mock.sanada.com")
         XCTAssertEqual(request.httpMethod, "POST")
     }
     
     func testSetPutHTTPMethod() {
         var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
-        let mockTask = MockNetworkTask.put("request")
-        
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .put,
+                                       params: [:],
+                                       encoding: .body)
+
         let requestable = MockRequestable()
         requestable.setHTTPMethod(to: &request, task: mockTask)
         
+        XCTAssertEqual(request.url?.absoluteString, "https://mock.sanada.com")
         XCTAssertEqual(request.httpMethod, "PUT")
     }
     
     func testSetPatchHTTPMethod() {
         var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
-        let mockTask = MockNetworkTask.patch("request")
-        
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .patch,
+                                       params: [:],
+                                       encoding: .body)
+
         let requestable = MockRequestable()
         requestable.setHTTPMethod(to: &request, task: mockTask)
         
+        XCTAssertEqual(request.url?.absoluteString, "https://mock.sanada.com")
         XCTAssertEqual(request.httpMethod, "PATCH")
     }
 
     func testSetDeleteHTTPMethod() {
         var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
-        let mockTask = MockNetworkTask.delete("request")
-        
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .delete,
+                                       params: [:],
+                                       encoding: .body)
+
         let requestable = MockRequestable()
         requestable.setHTTPMethod(to: &request, task: mockTask)
         
+        XCTAssertEqual(request.url?.absoluteString, "https://mock.sanada.com")
         XCTAssertEqual(request.httpMethod, "DELETE")
     }
 
+    // Test Parameter
     func testSetParametersQueryString() {
-        var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
         let param = "request"
-        let mockTask = MockNetworkTask.post(param)
-        let requestable = MockRequestable()
-        requestable.setParameters(to: &request, task: mockTask)
-        
         let data: [String : String] = ["key": param]
         
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .get,
+                                       params: data,
+                                       encoding: .queryString)
+        
+        let requestable = MockRequestable()
+        
+        var request = requestable.createRequest(task: mockTask)
+        requestable.setParameters(to: &request, task: mockTask)
+                
+        XCTAssertEqual(request.url?.absoluteString, "https://mock.sanada.com/mocked?key=request")
+    }
+    
+    func testSetParametersBodyString() {
+        let param = "request"
+        let data: [String : String] = ["key": param]
+        
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .post,
+                                       params: data,
+                                       encoding: .body)
+        let requestable = MockRequestable()
+        
+        var request = requestable.createRequest(task: mockTask)
+        requestable.setParameters(to: &request, task: mockTask)
+        
+
         guard let body = request.httpBody?.dictionary,
                 let dict = body as? [String : String] else {
             XCTFail("Body Empty")
@@ -196,16 +176,83 @@ final class RequestableTests: XCTestCase {
         
         XCTAssertEqual(dict, data)
     }
-
-    func testSetHeadersWithContentType() {
-        var request = URLRequest(url: URL(string: "https://mock.sanada.com")!)
-        let param = "request"
-        let mockTask = MockNetworkTask.post(param)
+    
+    func testSetParametersBodyEmpty() {
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "/path",
+                                       method: .post,
+                                       params: [:],
+                                       encoding: .body,
+                                       headers: nil)
         
         let requestable = MockRequestable()
+        var request = requestable.createRequest(task: mockTask)
+
+        requestable.setParameters(to: &request, task: mockTask)
+        
+        XCTAssertNil(request.httpBody)
+        // Add more assertions
+    }
+
+    func testSetHeadersNoContentType() {
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "/path",
+                                       method: .get,
+                                       params: [:],
+                                       encoding: .queryString,
+                                       headers: ["Authorization": "Bearer token"])
+        
+        let requestable = MockRequestable()
+        var request = requestable.createRequest(task: mockTask)
         requestable.setHeaders(to: &request, task: mockTask)
         
-        XCTAssertEqual(request.allHTTPHeaderFields?["header"], param)
+        XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], "Bearer token")
+        XCTAssertNil(request.allHTTPHeaderFields?["Content-Type"])
+        // Add more assertions
+    }
+
+    func testSetParametersAndHeaders() {
+        let data: [String : String] = ["key": "value"]
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "/path",
+                                       method: .post,
+                                       params: data,
+                                       encoding: .body,
+                                       headers: ["Authorization": "Bearer token"])
+        let requestable = MockRequestable()
+        var request = requestable.createRequest(task: mockTask)
+        
+        requestable.setParameters(to: &request, task: mockTask)
+        requestable.setHeaders(to: &request, task: mockTask)
+        requestable.setHTTPMethod(to: &request, task: mockTask)
+
+        guard let body = request.httpBody?.dictionary,
+                let dict = body as? [String : String] else {
+            XCTFail("Body Empty")
+            return
+        }
+        
+        XCTAssertEqual(request.httpMethod, "POST")
+        XCTAssertEqual(dict, data)
+        XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], "Bearer token")
+        XCTAssertEqual(request.allHTTPHeaderFields?["Content-Type"], "application/json")
+    }
+
+    // Test Headers
+    func testSetHeadersWithContentType() {
+        let mockTask = MockNetworkTask(baseURL: .url(URL(string: "https://mock.sanada.com/")!),
+                                       path: "mocked",
+                                       method: .post,
+                                       params: [:],
+                                       encoding: .body,
+                                       headers: ["Authorization": "Bearer"])
+
+        let requestable = MockRequestable()
+        var request = requestable.createRequest(task: mockTask)
+
+        requestable.setHeaders(to: &request, task: mockTask)
+        
+        XCTAssertEqual(request.allHTTPHeaderFields?["Authorization"], "Bearer")
         XCTAssertEqual(request.allHTTPHeaderFields?["Content-Type"], "application/json")
     }
 }
