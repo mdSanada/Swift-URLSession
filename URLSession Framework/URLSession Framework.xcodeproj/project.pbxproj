@@ -20,6 +20,7 @@
 		CE7417472A8FE78300486CF9 /* Extension + Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417462A8FE78300486CF9 /* Extension + Data.swift */; };
 		CE7417492A8FE86200486CF9 /* Extension + Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7417482A8FE86200486CF9 /* Extension + Dictionary.swift */; };
 		CE74175B2A90096C00486CF9 /* RequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74175A2A90096C00486CF9 /* RequestableTests.swift */; };
+		CE74175D2A914CF700486CF9 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE74175C2A914CF700486CF9 /* NetworkManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		CE7417462A8FE78300486CF9 /* Extension + Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Data.swift"; sourceTree = "<group>"; };
 		CE7417482A8FE86200486CF9 /* Extension + Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Dictionary.swift"; sourceTree = "<group>"; };
 		CE74175A2A90096C00486CF9 /* RequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestableTests.swift; sourceTree = "<group>"; };
+		CE74175C2A914CF700486CF9 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7416FE2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift */,
+				CE74175C2A914CF700486CF9 /* NetworkManagerTests.swift */,
 				CE74175A2A90096C00486CF9 /* RequestableTests.swift */,
 			);
 			path = "URLSession FrameworkTests";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE74175D2A914CF700486CF9 /* NetworkManagerTests.swift in Sources */,
 				CE7416FF2A8FD2C800486CF9 /* URLSession_FrameworkTests.swift in Sources */,
 				CE74175B2A90096C00486CF9 /* RequestableTests.swift in Sources */,
 			);
