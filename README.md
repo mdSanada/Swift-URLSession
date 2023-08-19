@@ -92,3 +92,12 @@ networkManager.request(
 ```
 
 With the **`enum`** implementation for **`MyNetworkTask`**, each case of the enum represents a different network task configuration, making it easier to manage and create network requests using the **`NetworkManager`** class.
+
+## Example Project
+
+To help you get started quickly, we've provided a simple example project that showcases how to use the URLSession Framework for making network requests. This example project illustrates the basic concepts without going into complex architectural patterns.
+
+### Running the Example
+Build and run the example project on a simulator or device to see the URLSession Framework in action. You'll be able to observe how network tasks are defined, requests are made, and responses are handled using the provided components.
+
+<img src="https://github.com/mdSanada/Swift-URLSession/blob/main/Example.gif" width="428"/>
